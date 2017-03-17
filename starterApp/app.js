@@ -19,6 +19,22 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// example of ejs template definition
+// app.set('views', './src/views');
+// app.set('view engine', 'ejs');
+
+// example of swig template definition - easy to use looping
+// can use whatever file extension we want but need to define
+// app.engine('html', swig.renderFile);
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'html');
+
+// example of handlebars template definition
+// app.engine('handlebars', handlebars.engine);
+// or
+// app.engine('hbs', handlebars.engine);
+// app.set('view engine', 'handlebars');
+
 // middleware - any number of functions invoked by express routing layer before your final request handler is made
 // mounting any app.use in between http request and end of response
 // order matters
@@ -42,10 +58,17 @@ app.get('/', function(req, res) {
   res.render('index', {title: 'Welcome to express'});
 });
 
+// example of passing paranmeters
+// app.get('/:id', function(req, res) {
+//   res.send('A string example ' + req.params.id);
+// });
+
 app.get('/search', function(req, res) {
     var query = req.query.id;
     res.send('id: ' + query);
 });
+
+app.use('/api', require('./api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

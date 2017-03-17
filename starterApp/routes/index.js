@@ -6,4 +6,7 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+// example of calling controller.main
+// router.get('/', controller.main);
+
 module.exports = router;
